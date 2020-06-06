@@ -1,4 +1,4 @@
-package com.sumukh.kafkaexample.Domain;
+package com.sumukh.kafkaexample.domain;
 
 
 import lombok.AllArgsConstructor;
@@ -12,4 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class LibraryEvent {
     private Integer libraryEventId;
+
+    private Book book;
+
 }
