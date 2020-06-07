@@ -3,6 +3,7 @@ package com.sumukh.kafkaexample.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sumukh.kafkaexample.domain.LibraryEvent;
+import com.sumukh.kafkaexample.domain.LibraryEventType;
 import com.sumukh.kafkaexample.producer.LibraryEventProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,9 @@ public class LibraryEventsController {
     public ResponseEntity<LibraryEvent> postLibraryEvent(@RequestBody LibraryEvent libraryEvent) throws JsonProcessingException {
 
         //libraryEventProducer.sendLibraryEvent(libraryEvent);
-        libraryEventProducer.sendLibraryEventSynchronous(libraryEvent);
+        //libraryEventProducer.sendLibraryEventSynchronous(libraryEvent);
+        libraryEvent.setLibraryEventType(LibraryEventType.ADD);
+        libraryEventProducer.sendLibraryEventProducerRecord(libraryEvent);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(libraryEvent);
     }
