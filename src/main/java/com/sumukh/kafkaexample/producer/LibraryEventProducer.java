@@ -96,6 +96,6 @@ public class LibraryEventProducer {
 
 
     void handleSuccess(Integer key, String value,SendResult<Integer,String> result) {
-        log.info("Success, partition is "+result.getRecordMetadata().partition());
+        log.info("Success!! key is : "+key+"\n value is : "+value+"\npartition is :"+result.getRecordMetadata().partition());
     }
 }
